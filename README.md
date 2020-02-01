@@ -1,10 +1,17 @@
-mbentley/libresonic
-===================
+# mbentley/airsonic
 
-docker image for libresonic (https://github.com/Libresonic/libresonic); fork of subsonic
+docker image for [airsonic](https://github.com/airsonic/airsonic)
 
 To pull this image:
-`docker pull mbentley/libresonic`
+`docker pull mbentley/airsonic`
 
 Example usage:
-`docker run -d -p 4040:4040 -v /data/libresonic:/data --name libresonic mbentley/libresonic`
+
+```
+docker run -d \
+  --restart unless-stopped \
+  --name airsonic \
+  -p 4040:4040 \
+  -v airsonic:/data \
+  mbentley/airsonic
+````
