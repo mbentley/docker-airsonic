@@ -3,7 +3,7 @@
 set -e
 
 echo "======================================"
-echo "Starting libresonic initialization."
+echo "Starting airsonic initialization."
 
 if [ ! -d /data ]
 then
@@ -14,7 +14,7 @@ else
 fi
 
 (cd /data
-for DIR in db lucene2 lastfmcache thumbs music Podcast playlists .cache .java
+for DIR in db index16 lucene2 lastfmcache thumbs music Podcast playlists .cache .java
 do
   if [ ! -d "${DIR}" ]
   then
@@ -26,7 +26,7 @@ do
   fi
 done
 
-for FILE in libresonic.properties libresonic.log rollback.sql
+for FILE in airsonic.properties airsonic.log rollback.sql
 do
   if [ ! -f "${FILE}" ]
   then
@@ -38,7 +38,7 @@ do
   fi
 done)
 
-echo "libresonic initialization complete!"
+echo "airsonic initialization complete!"
 echo "======================================";echo
 
 exec "${@}"
