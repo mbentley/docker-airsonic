@@ -27,10 +27,11 @@ RUN (mkdir /var/airsonic/transcode &&\
 # create data directories and symlinks to make it easier to use a volume
 RUN (mkdir /data &&\
   cd /data &&\
-  mkdir db lucene2 lastfmcache thumbs music Podcast playlists .cache .java &&\
+  mkdir db index16 lucene2 lastfmcache thumbs music Podcast playlists .cache .java &&\
   touch airsonic.properties airsonic.log rollback.sql &&\
   cd /var/airsonic &&\
   ln -s /data/db &&\
+  ln -s /data/index16 &&\
   ln -s /data/lucene2 &&\
   ln -s /data/lastfmcache &&\
   ln -s /data/thumbs &&\

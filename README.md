@@ -12,6 +12,8 @@ docker run -d \
   --restart unless-stopped \
   --name airsonic \
   -p 4040:4040 \
-  -v airsonic:/data \
+  -v airsonic-data:/data \
   mbentley/airsonic
 ````
+
+See [Migrating from Subsonic to Airsonic](https://airsonic.github.io/docs/migrate/) for instructions on how to migrate from Subsonic or Libresonic to Airsonic
