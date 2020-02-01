@@ -26,7 +26,7 @@ do
   fi
 done
 
-for FILE in airsonic.properties airsonic.log rollback.sql
+for FILE in airsonic.properties rollback.sql
 do
   if [ ! -f "${FILE}" ]
   then

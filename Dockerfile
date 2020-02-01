@@ -28,7 +28,7 @@ RUN (mkdir /var/airsonic/transcode &&\
 RUN (mkdir /data &&\
   cd /data &&\
   mkdir db index16 lucene2 lastfmcache thumbs music Podcast playlists .cache .java &&\
-  touch airsonic.properties airsonic.log rollback.sql &&\
+  touch airsonic.properties rollback.sql &&\
   cd /var/airsonic &&\
   ln -s /data/db &&\
   ln -s /data/index16 &&\
@@ -41,7 +41,6 @@ RUN (mkdir /data &&\
   ln -s /data/.cache &&\
   ln -s /data/.java &&\
   ln -s /data/airsonic.properties &&\
-  ln -s /data/airsonic.log &&\
   ln -s /data/rollback.sql &&\
   chown -R airsonic:airsonic /data)
 
