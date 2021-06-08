@@ -4,6 +4,8 @@ MAINTAINER Matt Bentley <mbentley@mbentley.net>
 # install ca-certificates, ffmpeg, and java8
 RUN (apk --no-cache add ca-certificates ffmpeg ttf-dejavu openjdk8 wget jq)
 
+ARG AIRSONIC_VER
+
 # set airsonic major version
 ENV AIRSONIC_MAJOR_VER="10"
 
