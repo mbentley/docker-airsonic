@@ -16,7 +16,7 @@ RUN (mkdir /var/airsonic &&\
   chown -R airsonic:airsonic /var/airsonic)
 
 # get latest airsonic version from GitHub, check to make sure it hasn't passed the AIRSONIC_MAJOR_VER and install airsonic.war from https://github.com/airsonic/airsonic
-RUN (AIRSONIC_VER="$(wget -q -O - https://api.github.com/repos/airsonic/airsonic/releases/latest | jq -r .tag_name)" &&\
+RUN (AIRSONIC_VER="$(if [ -z "${AIRSONIC_VER}" ]; then wget -q -O - https://api.github.com/repos/airsonic/airsonic/releases/latest | jq -r .tag_name; else echo "${AIRSONIC_VER}"; fi)" &&\
   if [ "$(echo $AIRSONIC_VER | awk -F '.' '{print $1}')" != "v${AIRSONIC_MAJOR_VER}" ]; then echo "Latest version number is no longer ${AIRSONIC_MAJOR_VER}"; exit 1; fi &&\
   wget "https://github.com/airsonic/airsonic/releases/download/${AIRSONIC_VER}/airsonic.war" -O /var/airsonic/airsonic.war &&\
   chown airsonic:airsonic /var/airsonic/airsonic.war)
