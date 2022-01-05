@@ -1,6 +1,6 @@
 # rebased/repackaged base image that only updates existing packages
 FROM mbentley/alpine:latest
-MAINTAINER Matt Bentley <mbentley@mbentley.net>
+LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
 # install ca-certificates, ffmpeg, and java8
 RUN (apk --no-cache add ca-certificates ffmpeg ttf-dejavu openjdk8 wget jq)
