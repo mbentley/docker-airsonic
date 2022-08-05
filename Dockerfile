@@ -17,10 +17,10 @@ RUN (mkdir /var/airsonic &&\
   chown -R airsonic:airsonic /var/airsonic)
 
 # get latest airsonic version from GitHub, check to make sure it hasn't passed the AIRSONIC_MAJOR_VER and install airsonic.war from https://github.com/airsonic/airsonic
-RUN (AIRSONIC_VER="$(if [ -z "${AIRSONIC_VER}" ]; then wget -q -O - https://api.github.com/repos/airsonic/airsonic/releases/latest | jq -r .tag_name; else echo "${AIRSONIC_VER}"; fi)" &&\
-  if [ "$(echo $AIRSONIC_VER | awk -F '.' '{print $1}')" != "v${AIRSONIC_MAJOR_VER}" ]; then echo "Latest version number is no longer ${AIRSONIC_MAJOR_VER}"; exit 1; fi &&\
-  wget "https://github.com/airsonic/airsonic/releases/download/${AIRSONIC_VER}/airsonic.war" -O /var/airsonic/airsonic.war &&\
-  chown airsonic:airsonic /var/airsonic/airsonic.war)
+RUN AIRSONIC_VER="$(if [ -z "${AIRSONIC_VER}" ]; then wget -q -O - https://api.github.com/repos/airsonic/airsonic/releases/latest | jq -r .tag_name; else echo "${AIRSONIC_VER}"; fi)" &&\
+  if [ "$(echo "${AIRSONIC_VER}" | awk -F '.' '{print $1}')" != "v${AIRSONIC_MAJOR_VER}" ]; then echo "Latest version number is no longer ${AIRSONIC_MAJOR_VER}"; exit 1; fi &&\
+  wget -q "https://github.com/airsonic/airsonic/releases/download/${AIRSONIC_VER}/airsonic.war" -O /var/airsonic/airsonic.war &&\
+  chown airsonic:airsonic /var/airsonic/airsonic.war
 
 # create transcode folder and add ffmpeg
 RUN (mkdir /var/airsonic/transcode &&\
@@ -28,24 +28,25 @@ RUN (mkdir /var/airsonic/transcode &&\
   chown -R airsonic:airsonic /var/airsonic/transcode)
 
 # create data directories and symlinks to make it easier to use a volume
-RUN (mkdir /data &&\
+RUN mkdir /data &&\
   cd /data &&\
-  mkdir db index16 lucene2 lastfmcache thumbs music Podcast playlists .cache .java &&\
+  mkdir db index16 index18 lucene2 lastfmcache thumbs music Podcast playlists .cache .java &&\
   touch airsonic.properties rollback.sql &&\
   cd /var/airsonic &&\
-  ln -s /data/db &&\
-  ln -s /data/index16 &&\
-  ln -s /data/lucene2 &&\
-  ln -s /data/lastfmcache &&\
-  ln -s /data/thumbs &&\
-  ln -s /data/music &&\
-  ln -s /data/Podcast &&\
-  ln -s /data/playlists &&\
-  ln -s /data/.cache &&\
-  ln -s /data/.java &&\
-  ln -s /data/airsonic.properties &&\
-  ln -s /data/rollback.sql &&\
-  chown -R airsonic:airsonic /data)
+  ln -s /data/db . &&\
+  ln -s /data/index16 . &&\
+  ln -s /data/index18 . &&\
+  ln -s /data/lucene2 . &&\
+  ln -s /data/lastfmcache . &&\
+  ln -s /data/thumbs . &&\
+  ln -s /data/music . &&\
+  ln -s /data/Podcast . &&\
+  ln -s /data/playlists . &&\
+  ln -s /data/.cache . &&\
+  ln -s /data/.java . &&\
+  ln -s /data/airsonic.properties . &&\
+  ln -s /data/rollback.sql . &&\
+  chown -R airsonic:airsonic /data
 
 COPY entrypoint.sh /entrypoint.sh
 
