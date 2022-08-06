@@ -33,4 +33,4 @@ EXPOSE 4040
 VOLUME ["/data"]
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["java","-Dserver.address=0.0.0.0","-Dserver.port=4040","-Dserver.contextPath=/","-Djava.awt.headless=true","-jar","/opt/airsonic/airsonic.war"]
+CMD ["java","-Dserver.address=0.0.0.0","-Dairsonic.home=/data","-Dserver.port=4040","-Dserver.contextPath=/","-Djava.awt.headless=true","-jar","/opt/airsonic/airsonic.war"]
