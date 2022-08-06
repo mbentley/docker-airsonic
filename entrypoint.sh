@@ -14,7 +14,7 @@ else
 fi
 
 (cd /data
-for DIR in db index16 lucene2 lastfmcache thumbs music Podcast playlists .cache .java
+for DIR in db index16 index18 lucene2 lastfmcache thumbs music Podcast playlists .cache .java
 do
   if [ ! -d "${DIR}" ]
   then
