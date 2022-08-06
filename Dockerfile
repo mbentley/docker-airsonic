@@ -14,9 +14,8 @@ RUN mkdir /data /opt/airsonic &&\
   adduser -h /data -D -u 504 -g airsonic -G airsonic -s /sbin/nologin airsonic &&\
   chown -R airsonic:airsonic /data /opt/airsonic
 
-# TODO: move to https://github.com/airsonic-advanced/airsonic-advanced/
 # get latest airsonic version from GitHub, check to make sure it hasn't passed the AIRSONIC_MAJOR_VER and install airsonic.war from https://github.com/airsonic/airsonic
-RUN AIRSONIC_VER="$(if [ -z "${AIRSONIC_VER}" ]; then wget -q -O - https://api.github.com/repos/airsonic/airsonic/releases/latest | jq -r .tag_name; else echo "${AIRSONIC_VER}"; fi)" &&\
+RUN AIRSONIC_VER="$(if [ -z "${AIRSONIC_VER}" ]; then wget -q -O - https://api.github.com/repos/airsonic-advanced/airsonic-advanced/releases/latest | jq -r .tag_name; else echo "${AIRSONIC_VER}"; fi)" &&\
   if [ "$(echo "${AIRSONIC_VER}" | awk -F '.' '{print $1}')" != "v${AIRSONIC_MAJOR_VER}" ]; then echo "Latest version number is no longer ${AIRSONIC_MAJOR_VER}"; exit 1; fi &&\
   wget -q "https://github.com/airsonic/airsonic/releases/download/${AIRSONIC_VER}/airsonic.war" -O /opt/airsonic/airsonic.war &&\
   chown airsonic:airsonic /opt/airsonic/airsonic.war
