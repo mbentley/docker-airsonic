@@ -3,7 +3,7 @@ FROM mbentley/alpine:latest
 LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
 # install ca-certificates, ffmpeg, and java8
-RUN apk --no-cache add ca-certificates ffmpeg ttf-dejavu openjdk17 wget jq
+RUN apk --no-cache add ca-certificates ffmpeg lame ttf-dejavu openjdk17 wget jq
 
 ARG AIRSONIC_VER
 ARG AIRSONIC_MAJOR_VER="11"
@@ -20,9 +20,10 @@ RUN AIRSONIC_VER="$(if [ -z "${AIRSONIC_VER}" ]; then wget -q -O - "https://api.
   wget -q "https://github.com/airsonic-advanced/airsonic-advanced/releases/download/${AIRSONIC_VER}/airsonic.war" -O /opt/airsonic/airsonic.war &&\
   chown airsonic:airsonic /opt/airsonic/airsonic.war
 
-# create transcode folder and add ffmpeg
+# create transcode folder for ffmpeg & lame
 RUN mkdir /data/transcode &&\
   ln -s /usr/bin/ffmpeg /data/transcode/ffmpeg &&\
+  ln -s /usr/bin/lame /data/transcode/lame &&\
   chown -R airsonic:airsonic /data/transcode
 
 COPY entrypoint.sh /entrypoint.sh

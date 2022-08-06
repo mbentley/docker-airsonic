@@ -10,7 +10,16 @@ then
   echo "INFO - Directory /data/transcode doesn't exist; creating..."
   mkdir /data/transcode
   cd /data/transcode
-  ln -s /usr/bin/ffmpeg .
+
+  # make sure symlinks exist for binaries
+  for BIN in ffmpeg lame
+  do
+    if [ ! -L "/usr/bin/${BIN}" ]
+    then
+      echo "INFO - Symlink for ${BIN} doesn't exist; creating..."
+      ln -s "/usr/bin/${BIN}" .
+    fi
+  done
 else
   echo "INFO - found directory /data/transcode"
 fi
