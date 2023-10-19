@@ -2,7 +2,7 @@
 FROM mbentley/alpine:latest
 LABEL maintainer="Matt Bentley <mbentley@mbentley.net>"
 
-# install ca-certificates, ffmpeg, and java8
+# install ca-certificates, ffmpeg, and java17
 RUN apk --no-cache add ca-certificates ffmpeg lame ttf-dejavu openjdk17 wget jq
 
 ARG AIRSONIC_VER

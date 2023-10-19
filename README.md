@@ -7,7 +7,7 @@ To pull this image:
 
 Example usage:
 
-```
+```bash
 docker run -d \
   --restart unless-stopped \
   --name airsonic \
