@@ -1,6 +1,6 @@
 # mbentley/airsonic
 
-docker image for [Airsonic-Advanced](https://github.com/airsonic-advanced/airsonic-advanced)
+docker image for [Airsonic-Advanced](https://github.com/kagemomiji/airsonic-advanced)
 
 To pull this image:
 `docker pull mbentley/airsonic`
