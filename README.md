@@ -1,5 +1,8 @@
 # mbentley/airsonic
 
+> [!WARNING]
+> This repo has been archived as Airsonic Advanced is not being actively maintained. I would suggest moving to [Navidrome](https://www.navidrome.org/)
+
 docker image for [Airsonic-Advanced](https://github.com/kagemomiji/airsonic-advanced)
 
 To pull this image:
